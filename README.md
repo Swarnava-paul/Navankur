@@ -1,2 +1,2 @@
-# irona.ai
-This is a Front-end Assignment from irona.ai
+# Navankur Full Stack Job Platform Project
+
