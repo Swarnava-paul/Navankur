@@ -12,6 +12,7 @@ const connect = require('./Db/db.connection');
 // routes
 const AuthRouter = require('./Routes/AuthRoutes');
 const JobRouter = require('./Routes/JobRoutes');
+const UserRouter = require('./Routes/UserRoutes');
 
 if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`);
@@ -30,6 +31,7 @@ if (cluster.isPrimary) {
     server.use(express.json());
     server.use('/auth/v1',AuthRouter);
     server.use('/job/v1',JobRouter);
+    server.use('/user/v1',UserRouter);
     server.listen(process.env.PORT,async()=>{
         try {
           await connect.db(); // db connection
