@@ -23,7 +23,7 @@ AuthRouter.post('/register', async (req, res) => {
             if(!user) return res.status(500).json({message:"Try again Later"});
 
             await deleteOTP(Email); // after check delete that otp from server
-            res.status(200).json({message :"Registration Successful"})
+            return res.status(200).json({message :"Registration Successful"})
         }
         return res.status(404).json({message:"Wrong Otp"})
         // else reject request
@@ -64,9 +64,9 @@ AuthRouter.get('/verifyOtp' , async(req,res)=>{
 
 AuthRouter.post('/login', async(req,res)=>{
     try{
-        if(!email || password ) return res.status(400).json({message:"Invalid Request"});
-
         const {email,password} = req.body;
+        
+        if(!email || !password ) return res.status(400).json({message:"Invalid Request"});
 
         const user = await UserModel.findOne({Email:email})
 
@@ -83,6 +83,7 @@ AuthRouter.post('/login', async(req,res)=>{
             }
         })
     }catch(error) {
+        console.log(error)
         res.status(500).json({message:"Internal Server Error"});
     }
 })

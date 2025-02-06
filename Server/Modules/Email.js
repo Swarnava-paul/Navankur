@@ -2,8 +2,8 @@ const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // true for port 465, false for other ports
+  port: 587,
+  secure: false, // true for port 465, false for other ports
   auth: {
     user: process.env.EMAIL_NODEMAILER,
     pass: process.env.PASS_NODEMAILER,
@@ -18,7 +18,7 @@ async function sendEmail(userEmail, otp) {
       from: `"Job Platform" <${process.env.EMAIL_NODEMAILER}>`, // corrected sender address
       to: userEmail, // list of receivers
       subject: "Verify Your Email With Us", // Subject line
-      text: '', // plain text body
+      text: 'Otp Verification', // plain text body
       html: `<h1>Your One Time Password is ${otp} and valid for 3 minutes</h1>`, // html body
     });
   } catch (err) {
