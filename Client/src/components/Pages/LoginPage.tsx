@@ -31,7 +31,7 @@ const LoginPage = () => {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URI}/auth/v1/login`,{
         email,password
       });
-      setTokenToLocalStorage(response.data.token)
+      setTokenToLocalStorage(response.data.token,response.data.role);
     }catch(error) {
       //
       setCredientialErr('Wrong Credientials');
@@ -42,9 +42,13 @@ const LoginPage = () => {
       setLoading(false)
     }
   };
-  function setTokenToLocalStorage(token) {
+  function setTokenToLocalStorage(token,role) {
     JSON.stringify(localStorage.setItem('token',token));
-    navigate('/home/jobSeeker')
+    if(role === 'JobSeeker') {
+      navigate('/home/jobSeeker')
+    }else {
+      navigate("/home/employer")
+    }
   }
   const handleSubmit = (e) => {
     e.preventDefault();

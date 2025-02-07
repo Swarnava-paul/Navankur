@@ -85,7 +85,7 @@ AuthRouter.post('/login', async(req,res)=>{
         jwt.sign({ id : _id },process.env.JWT_PRIVATE_KEY, function(err, token) {
             if(err) throw new Error(err);
             else {
-                return res.status(200).json({message:"Login Successful",token});
+                return res.status(200).json({message:"Login Successful",token,role:user.Role});
             }
         })
     }catch(error) {
