@@ -34,7 +34,7 @@ const LandingPage: React.FC = () => {
               <br />- AI-driven job matching system.
             </Text>
             <Button colorScheme="blue" size="lg" leftIcon={<FaBriefcase />}>
-              <Link to="/register">Post a Job</Link>
+              <Link to="/login">Login</Link>
             </Button>
           </VStack>
         </Stack>
