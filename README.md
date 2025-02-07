@@ -1,5 +1,7 @@
 # Navankur Full Stack Job Platform Project
 
+<h2>I am currently working on it Expected Full Completion time with
+Industry Grade UI and Logics is 8/02/2025 (Tomorrow)</h2>
 
 # Backend Api Documentation Link
 - https://dpfublzk8e.apidog.io/
