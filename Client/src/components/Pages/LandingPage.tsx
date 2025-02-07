@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
           Sign up today and connect with top employers.
         </Text>
         <Button mt={4} colorScheme="green" size="lg" display="block" mx="auto">
-        <Link to="/register">Post a Job</Link>
+        <Link to="/register">Register with us</Link>
         </Button>
       </Box>
     </Box>

@@ -50,8 +50,8 @@ const AppSlice = createSlice({
         setOtpGenerating:(state)=>{
             state.isOtpGenerating = !state.isOtpGenerating
         },
-        setIsOtpGenerated:(state)=>{
-            state.isOtpGenerated = true
+        setIsOtpGenerated:(state,{payload=true})=>{
+            state.isOtpGenerated = payload
         }
     },
 })

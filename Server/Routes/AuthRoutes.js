@@ -10,7 +10,8 @@ const jwt = require('jsonwebtoken')
 AuthRouter.post('/register', async (req, res) => {
     try{
         if(!req.query.otp) return res.status(400).json({message : 'Invalid Registration Request'});
-        if(!req.body) return res.status(400).json({message : 'Invalid Request'});
+        if(!req.body) return res.status(400).json({message : 'Invalid Request'})
+
         const {otp} = req.query;
         const {Email,Password} = req.body;
         // check that otp is correct from redis if then also grant register request
@@ -35,6 +36,11 @@ AuthRouter.post('/register', async (req, res) => {
 AuthRouter.post('/otp', async(req,res) => {
    try{
     if(!req.query.email) return res.status(400).json({message : 'Invalid Email'});
+
+    const user = await UserModel.findOne({Email:req.query.email}); // check if user already register
+    // with this email or not
+    if(user) return res.status(404).json({message:"An Account Already Registered with this Email"});
+
     const email = req.query.email;
     const otp = randomInt(1120,4478);
     // first we need to send this otp in users provided email

@@ -8,6 +8,7 @@ const RegisterPage: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const isOtpGenerating = useAppSelector((state)=>state.app.isOtpGenerating);
+  const isOtpGenerated = useAppSelector((state)=>state.app.isOtpGenerated);
   // for otp generation logic
 
   const [formError, setError] = useState({
@@ -63,7 +64,10 @@ const RegisterPage: React.FC = () => {
 
   return (
     <div className="container">
-        <OTPComponent/>
+       {
+        isOtpGenerated == true ? ( <OTPComponent/>)
+        :('')
+       }
     <h2>Register</h2>
     <form onSubmit={(event)=>handleSubmit(event)}>
       <div className="form-group">
