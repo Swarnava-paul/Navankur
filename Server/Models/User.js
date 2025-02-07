@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema({
     Linkedin : {type : String },
     City:{type : String},
     ResumeLink:{type:String},
+    isLoggedInFirstTime:{type:Boolean,default:true},
     CreatedAt : {type : String , default : () => new Date().toISOString()}
 },{versionKey:false});
 

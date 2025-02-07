@@ -16,6 +16,20 @@ UserRouter.get('/singleApplicant',checkAuth,checkRole,async(req,res)=>{
     }catch(error){
         return res.status(500).json({message:"Internal Server Error"});
     }
-})
+});
+
+UserRouter.get('/profile',checkAuth,async(req,res)=>{
+    try{
+      const {id} = req; // from middleware
+      const user = await UserModel.findOne({_id:id});
+      if(!user) return res.status(404).json({message:"No User Found"});
+      const {FirstName} = user;
+      return res.status(200).json({message:"User found", Response:true,
+      FirstName
+      })
+    }catch(error){
+        res.status(500).json({message:"Internal Server Error"});
+    }
+});
 
 module.exports = UserRouter;

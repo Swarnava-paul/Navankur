@@ -14,7 +14,10 @@ interface appState {
     },
     isOtpGenerating : boolean,
     isOtpCorrect : boolean,
-    isOtpGenerated : boolean
+    isOtpGenerated : boolean,
+    userInfo:{
+        FirstName:string
+    }
 }
 
 const initialState : appState = {
@@ -29,7 +32,10 @@ const initialState : appState = {
     },
     isOtpGenerating:false,
     isOtpCorrect : false,
-    isOtpGenerated:false
+    isOtpGenerated:false,
+    userInfo:{
+        FirstName:""
+    }
 }
 
 const AppSlice = createSlice({
@@ -52,11 +58,14 @@ const AppSlice = createSlice({
         },
         setIsOtpGenerated:(state,{payload=true})=>{
             state.isOtpGenerated = payload
+        },
+        setUserInfo:(state,action)=>{
+            state.userInfo = {FirstName:action.payload}
         }
     },
 })
 
 export const {SetLogin,setRole,setUserinfoForRegister
-    , setOtpGenerating,setIsOtpGenerated
+    , setOtpGenerating,setIsOtpGenerated,setUserInfo
 } = AppSlice.actions
 export default AppSlice.reducer;
