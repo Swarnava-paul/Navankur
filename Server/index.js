@@ -5,7 +5,7 @@ const server = express();
 const cluster = require('node:cluster');
 const numCPUs = require('node:os').availableParallelism();
 const process = require('node:process');
-
+const cors = require('cors')
 
 const connect = require('./Db/db.connection');
 
@@ -28,6 +28,7 @@ if (cluster.isPrimary) {
 } else {
   // Workers can share any TCP connection
   // In this case it is an HTTP server
+    server.use(cors())
     server.use(express.json());
     server.use('/auth/v1',AuthRouter);
     server.use('/job/v1',JobRouter);
